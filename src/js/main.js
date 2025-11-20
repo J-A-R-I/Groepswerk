@@ -107,8 +107,7 @@ function renderFavorites() {
     favoritesEmpty.classList.add("d-none");
     favorites.forEach((fav) => {
         const li = document.createElement("li");
-        li.className = "list-group-item d-flex justify-content-between align-item
-        s-center";
+        li.className = "list-group-item d-flex justify-content-between align-items-center";
         li.textContent = `${fav.name} (${fav.region})`;
         li.addEventListener("click", () => {
             const country = allCountries.find((c) => c.cca3 === fav.cca3);
