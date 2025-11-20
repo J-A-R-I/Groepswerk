@@ -1,12 +1,4 @@
 const STORAGE_KEY = "world-explorer-favorites";
-export function loadFavorites() {
-// TODO
-}
-export function saveFavorites(favorites) {
-// TODO
-}
-
-const STORAGE_KEY = "world-explorer-favorites";
 /**
  * Lees favorieten uit localStorage.
  * @returns {Array} lijst van favoriete landen (of lege array)

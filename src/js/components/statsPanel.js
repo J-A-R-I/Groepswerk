@@ -1,7 +1,3 @@
-export function renderStats(stats) {
-// TODO: bestaande skeleton verder uitwerken
-}
-
 import { clearElement, createElement } from "../utils/dom.js";
 /**
  * Render statistieken in #stats_panel.
@@ -10,6 +6,7 @@ import { clearElement, createElement } from "../utils/dom.js";
  * @param {number} stats.averagePopulation
  * @param {number} stats.favoritesPopulation
  */
+
 export function renderStats(stats) {
     const panel = document.querySelector("#stats_panel");
     if (!panel) return;
@@ -37,6 +34,7 @@ export function renderStats(stats) {
 // - maak voor elk stat een "bar" div
     panel.appendChild(barRow);
 }
+
 function createStatCard(label, valueText) {
     const col = createElement("div", "col-md-4");
     const card = createElement("div", "border rounded p-3 h-100");

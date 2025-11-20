@@ -1,10 +1,3 @@
-// Import our custom CSS
-import '../scss/styles.scss'
-
-// Import all of Bootstrap’s JS
-import * as bootstrap from 'bootstrap'
-
-// Styles & libraries
 import "../scss/styles.scss";
 import * as bootstrap from "bootstrap";
 import { fetchAllCountries } from "./services/countriesService.js";
@@ -14,10 +7,12 @@ import { calculateStats } from "./services/statsService.js";
 import { renderCountryList } from "./components/countryList.js";
 import { initCountryModal, showCountryDetail } from "./components/countryDetailModal.js";
 import { renderStats } from "./components/statsPanel.js";
+
 // Globale state
 let allCountries = [];
 let filteredCountries = [];
 let favorites = [];
+
 // DOM refs
 const searchInput = document.querySelector("#search_input");
 const regionSelect = document.querySelector("#region_filter");
@@ -62,10 +57,12 @@ function applyFilters() {
 // TODO:
 // - zoekterm en regio uitlezen
 // - filteredCountries opbouwen vanuit allCountries
+
 // Voorbeeldstructuur:
 // const term = searchInput.value.trim().toLowerCase();
 // const region = regionSelect.value;
 // filteredCountries = allCountries.filter(...);
+
     renderCountryList({
         countries: filteredCountries,
         favorites,

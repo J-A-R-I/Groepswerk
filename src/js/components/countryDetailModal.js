@@ -1,16 +1,3 @@
-export function initCountryModal(onFavoriteToggle) { ... }
-export async function showCountryDetail(country, isFavorite) {
-// TODO: details + kaart + wisselkoers
-}
-// In mapService.js:
-export function initMap() {
-// TODO: Leaflet map initialiseren
-}
-export function focusCountry(lat, lng, name) {
-// TODO: inzoomen + marker
-}
-
-
 import * as bootstrap from "bootstrap";
 import { clearElement, createElement } from "../utils/dom.js";
 import { focusCountry } from "../services/mapService.js";
@@ -35,11 +22,13 @@ export function initCountryModal(onFavoriteToggle) {
         });
     }
 }
+
 /**
  * Toon de modal voor een bepaald land.
  * @param {Object} country
  * @param {boolean} isFavorite
  */
+
 export async function showCountryDetail(country, isFavorite) {
     if (!modalInstance || !country) return;
     currentCountry = country;
