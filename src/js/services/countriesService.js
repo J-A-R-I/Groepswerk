@@ -13,7 +13,7 @@ export async function fetchAllCountries() {
 // - controleer res.ok
 // - parse JSON en geef de array terug
 // - gooi een fout bij problemen
-    const res = await fetch("https://restcountries.com/v3.1/all?fields=name,flags,population");
+    const res = await fetch("https://restcountries.com/v3.1/all?fields=name,capital,region,population,flags,latlng,languages,currencies,cca3");
     if (!res.ok) throw new Error("fetchAllCountries() is nog niet geïmplementeerd");
     return await res.json();
 }
