@@ -14,8 +14,7 @@ export function initMap() {
 // - voeg OSM-tiles toe
 // Voorbeeld (mag aangepast worden door studenten):
 // map = L.map(mapContainer).setView([20, 0], 2);
-// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attr
-    ibution: ... }).addTo(map);
+// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: ... }).addTo(map);
 }
 /**
  * Zoomt in op een bepaald land en toont een marker met naam.
