@@ -21,7 +21,7 @@ export function renderCountryList({ countries, favorites, onCountryClick, onFavo
         container.appendChild(empty);
         return;
     }
-    countries.map((country) => {
+    countries.forEach((country) => {
         const col = createElement("div", "col");
         const card = createElement("div", "card h-100 shadow-sm border-0");
         const body = createElement("div", "card-body d-flex flex-column");
