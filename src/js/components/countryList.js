@@ -18,20 +18,39 @@ export function renderCountryList({ countries, favorites, onCountryClick, onFavo
             "col-12 alert alert-light border text-center mb-0",
             "Geen landen gevonden voor deze filter."
         );
+
         container.appendChild(empty);
-        return;
+        return
     }
-    countries.forEach((country) => {
-        const col = createElement("div", "col");
-        const card = createElement("div", "card h-100 shadow-sm border-0");
-        const body = createElement("div", "card-body d-flex flex-column");
+
+    container.innerHTML = countries.map(country => {
+        return `
+            <div class="col">
+                
+                <div class="card h-100 shadow-sm border-0 pb-4 ps-2 pe-2">
+                <img class="img-fluid" src=${country.flags.png} alt="">
+                    <div class="card-body d-flex flex-column justify-content-end">
+                       <h2>${country.name.common}</h2>
+                    <p>Populatie: ${country.population}</p>
+                    <p>Regio: ${country.region}</p>
+                    <div class="d-flex justify-content-between">
+                        <button type="button" class="btn_modal btn btn-primary w-a">Info</button>
+                        <button type="button" class="btn_modal btn btn-warning w-a">Favoriet</button>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+`;
+    })
+        .join("");
+
+
+
+
 // TODO:
 // - vlag, naam, regio, populatie tonen
 // - knop "Details" die onCountryClick(country) oproept
 // - knop/icon voor favoriet (onFavoriteToggle(country))
 // - check of dit land in favorites zit (kleur/icoon aanpassen)
-        card.appendChild(body);
-        col.appendChild(card);
-        container.appendChild(col);
-    });
+
 }
