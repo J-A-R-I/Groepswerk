@@ -1,4 +1,3 @@
-export function initCountryModal(onFavoriteToggle) { ... }
 export async function showCountryDetail(country, isFavorite) {
 // TODO: details + kaart + wisselkoers
 }

@@ -1,12 +1,7 @@
-// Import our custom CSS
-import '../scss/styles.scss'
-
-// Import all of Bootstrap’s JS
-import * as bootstrap from 'bootstrap'
-
-// Styles & libraries
+//// Styles & libraries
 import "../scss/styles.scss";
 import * as bootstrap from "bootstrap";
+
 import { fetchAllCountries } from "./services/countriesService.js";
 import { initMap } from "./services/mapService.js";
 import { loadFavorites, saveFavorites } from "./services/storageService.js";
@@ -14,10 +9,12 @@ import { calculateStats } from "./services/statsService.js";
 import { renderCountryList } from "./components/countryList.js";
 import { initCountryModal, showCountryDetail } from "./components/countryDetailModal.js";
 import { renderStats } from "./components/statsPanel.js";
+
 // Globale state
 let allCountries = [];
 let filteredCountries = [];
 let favorites = [];
+
 // DOM refs
 const searchInput = document.querySelector("#search_input");
 const regionSelect = document.querySelector("#region_filter");
@@ -25,6 +22,7 @@ const statusMessage = document.querySelector("#status_message");
 const countriesCount = document.querySelector("#countries_count");
 const favoritesPanel = document.querySelector("#favorites_panel");
 const favoritesEmpty = document.querySelector("#favorites_empty");
+
 document.addEventListener("DOMContentLoaded", async () => {
     initMap();
     initCountryModal(handleFavoriteToggleFromModal);
@@ -34,6 +32,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderFavorites();
     updateStats();
 });
+
 async function loadCountries() {
     setStatus("Landen worden geladen...", "warning");
     try {
