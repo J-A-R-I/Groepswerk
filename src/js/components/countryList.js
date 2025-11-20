@@ -34,4 +34,4 @@ export function renderCountryList({ countries, favorites, onCountryClick, onFavo
         col.appendChild(card);
         container.appendChild(col);
     });
-}²
+}
