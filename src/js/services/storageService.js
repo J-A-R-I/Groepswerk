@@ -8,7 +8,7 @@ export function loadFavorites() {
 // - lees uit localStorage met STORAGE_KEY
 // - parse JSON
 // - ga veilig om met null / parse errors
-    return [];
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 }
 /**
  * Schrijf favorieten naar localStorage.
@@ -18,4 +18,5 @@ export function saveFavorites(favorites) {
 // TODO:
 // - stringify favorites
 // - schrijf naar localStorage
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites));
 }
