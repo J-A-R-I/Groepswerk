@@ -10,7 +10,11 @@ export async function fetchRateToEuro(currencyCode) {
 // - gebruik fetch + async/await
 // - haal de juiste rate uit data.rates[currencyCode]
 // - geef null terug bij fout
-    return null;
+    const res = await fetch(`https://open.er-api.com/v6/latest/EUR`);
+    if (!res.ok) throw new Error("fetchRateToEuro() is nog niet correct geïmplementeerd");
+
+    const data = await res.json();
+    return data.rates[currencyCode];
 }
 /**
  * Bereken statistieken op basis van gefilterde landen en favorieten.
