@@ -21,7 +21,6 @@ export function renderStats(stats) {
     <div class="card-body">Aantal landen, ${favoritesPopulation.toString()} </div>
     </div>`
 
-
     const cardsRow = createElement("div", "row gy-3 mb-3");
     const card1 = createStatCard("Aantal landen", totalCountries.toString());
     const card2 = createStatCard(
@@ -32,16 +31,30 @@ export function renderStats(stats) {
         "Totale populatie favorieten",
         favoritesPopulation.toLocaleString("nl-BE")
     );
+
     cardsRow.appendChild(card1);
     cardsRow.appendChild(card2);
     cardsRow.appendChild(card3);
     panel.appendChild(cardsRow);
-// Eenvoudige bar chart
+
+    // bar chart
     const barRow = createElement("div", "row bar-chart-row");
-// TODO:
-// - bereken relatieve hoogtes (bijv. in procent)
-// - maak voor elk stat een "bar" div
+
+    const maxValue = Math.max(totalCountries, averagePopulation, favoritesPopulation);
+
+    const bar1 = createBar(totalCountries, maxValue, "bg-primary-subtle border border-primary");
+    const bar2 = createBar(averagePopulation, maxValue, "bg-success-subtle border border-success");
+    const bar3 = createBar(favoritesPopulation, maxValue, "bg-warning-subtle border border-warning");
+
+    barRow.appendChild(bar1);
+    barRow.appendChild(bar2);
+    barRow.appendChild(bar3);
+
     panel.appendChild(barRow);
+
+    // TODO:
+    // - bereken relatieve hoogtes (bijv. in procent)
+    // - maak voor elk stat een "bar" div
 }
 
 function createStatCard(label, valueText) {
@@ -54,4 +67,16 @@ function createStatCard(label, valueText) {
     card.appendChild(valueEl);
     col.appendChild(card);
     return col;
+}
+
+function createBar(value, maxValue = 100, colorClass) {
+    const barWrapper = createElement("div", "col");
+    const bar = createElement("div", `rounded w-100 ${colorClass}`);
+
+    // hoogte in procent
+    const percentage = (value / maxValue) * 100;
+    bar.style.height = `${percentage}%`;
+
+    barWrapper.appendChild(bar);
+    return barWrapper;
 }
