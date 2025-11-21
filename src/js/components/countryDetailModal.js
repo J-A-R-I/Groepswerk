@@ -39,12 +39,71 @@ export async function showCountryDetail(country, isFavorite) {
     const currencyInfo = document.querySelector("#currency_info");
     const favBtn = document.querySelector("#favorite_toggle_btn");
 // TODO:
-// - titel invullen (country.name.common)
-// - vlag src/alt instellen
-// - detailsDl leegmaken en opnieuw vullen met dt/dd voor:
-// hoofdstad, regio, populatie, talen, valuta
+    title.textContent = country.name.common;
+    flagImg.src = country.flags.png;
+    flagImg.alt = `vlag van ${country.name.common}`;
+
+
     clearElement(detailsDl);
+
+    const addDetail = (label,value) => {
+        detailsDl.appendChild(createElement("dl", "col-sm-4", label));
+        detailsDl.appendChild(createElement("dd", "col-sm-8", value));
+    };
+
+    addDetail("Hoofdstad", country.capital ? country.capital.join(",") : "N/A")
+    addDetail("Regio", country.region)
+    addDetail("Populatie", country.population.toString())
+
+    const languages = country.language ? Object.values(country.language).join(",") : "N/A"
+    addDetail("Talen", languages)
+
+
+    const currencies = country.currencies
+    ? Object.values(country.currencies)
+            .map((c) => `${c.name} (${c.symbol})`)
+            .join("") : "N/A"
+    addDetail("Valuta", currencies)
+
+    if(country.latlng){
+        if(alertBox) alertBox.classList.add("d-none");
+        focusCountry(country.latlng[0], country.latlng[1], country.name.common)
+    } else{
+        if(alertBox){
+            alertBox.textContent = "Geen locatiegegevens beschikbaar"
+            alertBox.classList.remove("d-none")
+        }
+    }
     clearElement(currencyInfo);
+
+    if(country.currencies){
+        const currencyCode = Object.keys(country.currencies)[0]
+        if(currencyCode) {
+            currencyInfo.textContent = "Koers Laden..."
+            try {
+                const rate = await fetchRateToEuro(currencyCode)
+                if (rate) {
+                    currencyInfo.textContent = `1 EUR = ${rate} ${currencyCode}`
+                } else {
+                    currencyInfo.textContent = `Koers voor ${currencyCode} niet beschikbaar`
+                }
+            } catch (e){
+                currencyInfo.textContent = "Fout bij laden van de koers"
+            }
+        }
+    }
+
+    if(favBtn){
+        if(isFavorite){
+            favBtn.innerHTML = "verwijder uit favorieten"
+            favBtn.classList.remove = "btn-outline-warning"
+            favBtn.classList.add = "btn-warning"
+        }else {
+            favBtn.innerHTML = "toeveogen aan favorieten"
+            favBtn.classList.remove = "btn-outline-warning"
+            favBtn.classList.add = "btn-warning"
+        }
+    }
 // TODO: alertBox verbergen of tonen afhankelijk van geodata (lat/lng)
 // - lat/lng zoeken in country.latlng
 // - als aanwezig: focusCountry(lat, lng, name)
