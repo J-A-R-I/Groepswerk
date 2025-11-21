@@ -14,13 +14,6 @@ export function renderStats(stats) {
     const { totalCountries, averagePopulation, favoritesPopulation } = stats;
 // Kaarten met cijfers
 
-    panel.innerHTML = `
-    <div class="row gy-3 mb-3">test
-    <div class="card-body">Aantal landen, ${totalCountries.toString()} </div>
-    <div class="card-body">Aantal landen, ${averagePopulation.toString()} </div>
-    <div class="card-body">Aantal landen, ${favoritesPopulation.toString()} </div>
-    </div>`
-
     const cardsRow = createElement("div", "row gy-3 mb-3");
     const card1 = createStatCard("Aantal landen", totalCountries.toString());
     const card2 = createStatCard(
