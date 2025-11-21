@@ -13,6 +13,15 @@ export function renderStats(stats) {
     clearElement(panel);
     const { totalCountries, averagePopulation, favoritesPopulation } = stats;
 // Kaarten met cijfers
+
+    panel.innerHTML = `
+    <div class="row gy-3 mb-3">test
+    <div class="card-body">Aantal landen, ${totalCountries.toString()} </div>
+    <div class="card-body">Aantal landen, ${averagePopulation.toString()} </div>
+    <div class="card-body">Aantal landen, ${favoritesPopulation.toString()} </div>
+    </div>`
+
+
     const cardsRow = createElement("div", "row gy-3 mb-3");
     const card1 = createStatCard("Aantal landen", totalCountries.toString());
     const card2 = createStatCard(
@@ -36,6 +45,7 @@ export function renderStats(stats) {
 }
 
 function createStatCard(label, valueText) {
+
     const col = createElement("div", "col-md-4");
     const card = createElement("div", "border rounded p-3 h-100");
     const labelEl = createElement("div", "small text-muted mb-1", label);
