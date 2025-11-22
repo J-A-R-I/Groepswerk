@@ -1,6 +1,6 @@
 import * as bootstrap from "bootstrap";
 import { clearElement, createElement } from "../utils/dom.js";
-import { focusCountry } from "../services/mapService.js";
+import {focusCountry, initMap} from "../services/mapService.js";
 import { fetchRateToEuro } from "../services/statsService.js";
 let modalInstance = null;
 let currentCountry = null;

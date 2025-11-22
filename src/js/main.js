@@ -21,7 +21,7 @@ const countriesCount = document.querySelector("#countries_count");
 const favoritesPanel = document.querySelector("#favorites_panel");
 const favoritesEmpty = document.querySelector("#favorites_empty");
 document.addEventListener("DOMContentLoaded", async () => {
-    initMap();
+    initMap()
     initCountryModal(handleFavoriteToggleFromModal);
     favorites = loadFavorites();
     setupFilterHandlers();
