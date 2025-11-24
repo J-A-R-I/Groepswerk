@@ -12,6 +12,7 @@ import { renderStats } from "./components/statsPanel.js";
 let allCountries = [];
 let filteredCountries = [];
 let favorites = [];
+console.log("rendercountry branch")
 
 // DOM refs
 const searchInput = document.querySelector("#search_input");
@@ -21,7 +22,7 @@ const countriesCount = document.querySelector("#countries_count");
 const favoritesPanel = document.querySelector("#favorites_panel");
 const favoritesEmpty = document.querySelector("#favorites_empty");
 document.addEventListener("DOMContentLoaded", async () => {
-    initMap();
+    initMap()
     initCountryModal(handleFavoriteToggleFromModal);
     favorites = loadFavorites();
     setupFilterHandlers();
@@ -63,6 +64,16 @@ function applyFilters() {
 // const region = regionSelect.value;
 // filteredCountries = allCountries.filter(...);
 
+    const term = searchInput.value.trim().toLowerCase();
+    const region = regionSelect.value;
+
+    if(region === "all"){
+        filteredCountries = allCountries.filter(country => country.name.common.toLowerCase().includes(term));
+    }
+    else{
+        filteredCountries = allCountries.filter(country => country.name.common.toLowerCase().includes(term) && (country.region.includes(region)));
+    }
+
     renderCountryList({
         countries: filteredCountries,
         favorites,
@@ -72,6 +83,7 @@ function applyFilters() {
     countriesCount.textContent = `${filteredCountries.length} landen`;
     updateStats();
 }
+
 function handleCountryClick(country) {
     showCountryDetail(country, isFavorite(country));
 }
@@ -82,13 +94,39 @@ function handleFavoriteToggleFromModal(country) {
     toggleFavorite(country);
 }
 function toggleFavorite(country) {
-// TODO:
-// - key bepalen (bijv. country.cca3)
-// - indien al aanwezig in favorites: verwijderen
-// - anders: toevoegen (met minimaal name, region, cca3)
-// saveFavorites(favorites);
+    const key = country.cca3;
+    const existingIndex = favorites.findIndex((f) => f.cca3 === key);
+
+    if (existingIndex >= 0) {
+        // Verwijderen
+        favorites.splice(existingIndex, 1);
+    } else {
+        // Toevoegen
+        favorites.push({
+            cca3: country.cca3,
+            name: country.name.common,
+            region: country.region,
+            flags: country.flags,
+            population: country.population
+        });
+    }
+
+    saveFavorites(favorites);
     renderFavorites();
     updateStats();
+
+    // Her-render lijst om knop status te updaten
+    renderCountryList({
+        countries: filteredCountries,
+        favorites,
+        onCountryClick: handleCountryClick,
+        onFavoriteToggle: handleFavoriteToggleFromList
+    });
+
+    // Als modal open is, update knop daar ook (via showCountryDetail opnieuw aan te roepen of aparte update functie)
+    // Maar showCountryDetail opent de modal opnieuw, dat is misschien storend.
+    // Eenvoudiger is om de modal knop direct te updaten als we toegang hadden,
+    // maar voor nu is her-renderen van de lijst het belangrijkst.
 }
 function isFavorite(country) {
     const key = country.cca3;
