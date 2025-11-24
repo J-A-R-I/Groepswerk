@@ -12,6 +12,7 @@ import { renderStats } from "./components/statsPanel.js";
 let allCountries = [];
 let filteredCountries = [];
 let favorites = [];
+console.log("rendercountry branch")
 
 // DOM refs
 const searchInput = document.querySelector("#search_input");
