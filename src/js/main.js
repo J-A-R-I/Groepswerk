@@ -55,22 +55,22 @@ function setupFilterHandlers() {
     }
 }
 function applyFilters() {
-// TODO:
-// - zoekterm en regio uitlezen
-// - filteredCountries opbouwen vanuit allCountries
+    // TODO:
+    // - zoekterm en regio uitlezen
+    // - filteredCountries opbouwen vanuit allCountries
 
-// Voorbeeldstructuur:
-// const term = searchInput.value.trim().toLowerCase();
-// const region = regionSelect.value;
-// filteredCountries = allCountries.filter(...);
+    // Voorbeeldstructuur:
+    // const term = searchInput.value.trim().toLowerCase();
+    // const region = regionSelect.value;
+    // filteredCountries = allCountries.filter(...);
 
     const term = searchInput.value.trim().toLowerCase();
     const region = regionSelect.value;
 
-    if(region === "all"){
+    if (region === "all") {
         filteredCountries = allCountries.filter(country => country.name.common.toLowerCase().includes(term));
     }
-    else{
+    else {
         filteredCountries = allCountries.filter(country => country.name.common.toLowerCase().includes(term) && (country.region.includes(region)));
     }
 
@@ -155,7 +155,7 @@ function renderFavorites() {
 }
 function updateStats() {
     const stats = calculateStats(filteredCountries, favorites);
-    renderStats(stats);
+    renderStats({ ...stats, maxCountries: allCountries.length });
 }
 function setStatus(message, type = "secondary") {
     if (!statusMessage) return;
