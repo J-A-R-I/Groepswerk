@@ -106,7 +106,8 @@ function toggleFavorite(country) {
             cca3: country.cca3,
             name: country.name.common,
             region: country.region,
-            flags: country.flags
+            flags: country.flags,
+            population: country.population
         });
     }
 
