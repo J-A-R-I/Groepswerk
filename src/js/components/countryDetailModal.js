@@ -55,7 +55,7 @@ export async function showCountryDetail(country, isFavorite) {
     addDetail("Regio", country.region)
     addDetail("Populatie", country.population.toString())
 
-    const languages = country.language ? Object.values(country.language).join(",") : "N/A"
+    const languages = country.languages ? Object.values(country.languages).join(" / ") : "N/A"
     addDetail("Talen", languages)
 
 
