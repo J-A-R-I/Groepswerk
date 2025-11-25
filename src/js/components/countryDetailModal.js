@@ -53,7 +53,7 @@ export async function showCountryDetail(country, isFavorite) {
 
     addDetail("Hoofdstad", country.capital ? country.capital.join(",") : "N/A")
     addDetail("Regio", country.region)
-    addDetail("Populatie", country.population.toString())
+    addDetail("Populatie", country.population.toLocaleString())
 
     const languages = country.languages ? Object.values(country.languages).join(" / ") : "N/A"
     addDetail("Talen", languages)
