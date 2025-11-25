@@ -8,8 +8,8 @@ Voor elk onderdeel noteer je:
 AI gebruikt? ja/nee
 Omschrijving:
 ## 2. Detailmodal & kaart
-AI gebruikt? ja/nee
-Omschrijving:
+AI gebruikt? ja
+Omschrijving: AI gebruikt voor een foutmelding ivm leaflet map
 ## 3. Wisselkoers-API
 AI gebruikt? ja/nee
 Omschrijving:
